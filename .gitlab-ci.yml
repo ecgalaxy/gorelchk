@@ -2,5 +2,5 @@ check:
   tags:
     - ecgalaxy-image
   script:
-    - docker build -t gorelchk --build-arg REPO=${REPO} --build-arg TAG=${TAG} .
+    - docker build -t gorelchk --build-arg GO_VER=${GO_VER} --build-arg GO_DIR=${GO_DIR} --build-arg GORELEASER_VER=${GORELEASER_VER} --build-arg REPO=${REPO} --build-arg TAG=${TAG} .
     - docker rmi gorelchk
