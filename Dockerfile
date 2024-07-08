@@ -1,5 +1,5 @@
-FROM ubuntu:focal
-ARG BUILDER_USER=runner GO_VER=1.19 GO_DIR=1.19.0 GORELEASER_VER=v1.11.2 REPO=https://github.com/user/repo.git TAG=0.0.1
+FROM ubuntu:jammy
+ARG BUILDER_USER=runner GO_VER=1.21.11 GO_DIR=1.21.11 GORELEASER_VER=v2.0.1 REPO=https://github.com/user/repo.git TAG=0.0.1
 
 RUN apt-get update && \
     apt-get install -y git make wget
@@ -30,5 +30,5 @@ ENV PATH="/opt/hostedtoolcache/goreleaser:${PATH}"
 
 WORKDIR /home/${BUILDER_USER}/work
 RUN git clone -b ${TAG} ${REPO} . && \
-    goreleaser build --rm-dist && \
+    goreleaser build --clean && \
     find ./dist/ -type f -exec sha256sum "{}" +
